@@ -1,51 +1,51 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.container {
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-}
-
-h1 {
-    color: #333333;
-}
-
 input {
     width: 80%;
-    padding: [43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/antydemant/lessons-2020/tree/0c6095f45bfd841914ac8e7e25f8c9df273dea69/02-closure-and-context%2Fhomework%2FREADME.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button.circle-button {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    font-size: 16px;
+}
+
+.social-buttons button {
+    width: 100%;
+    margin: 5px 0;
+}
+
+#friends-list h3 {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#friends-list ul {
+    list-style-type: none;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
-.container {
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
+#friends-list ul li {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 0;
 }
-
-h1 {
-    color: #333333;
-}
-
-input {
-    width: 80%;
-    padding: [43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/antydemant/lessons-2020/tree/0c6095f45bfd841914ac8e7e25f8c9df273dea69/02-closure-and-context%2Fhomework%2FREADME.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")
