@@ -4,9 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const toncoinCount = document.getElementById('toncoin-count');
     const friendsButton = document.getElementById('friends-button');
     const supportButton = document.getElementById('support-button');
-    let toncoin = 0;
+    let toncoin = parseFloat(localStorage.getItem('toncoin')) || 0; // Retrieve saved data or set to 0
     let mining = false;
     const referralLink = 'https://www.example.com/referral-link'; // Replace this with your actual referral link
+
+    // Update the displayed Toncoin count on page load
+    toncoinCount.textContent = `${toncoin.toFixed(7)} TON`;
 
     mineButton.addEventListener('click', function() {
         if (!mining) {
@@ -18,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 setInterval(() => {
                     toncoin += 0.0000005;
                     toncoinCount.textContent = `${toncoin.toFixed(7)} TON`;
+                    localStorage.setItem('toncoin', toncoin); // Save the current toncoin value
                 }, 100); // Adjusted interval to 100 milliseconds
             }, 5000); // Change text after 5 seconds
         }
