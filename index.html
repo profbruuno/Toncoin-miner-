@@ -11,13 +11,18 @@
         <h1>Ton Miner</h1>
         <div id="auth-section">
             <h2>Sign Up / Log In</h2>
-            <input type="text" id="username-input" placeholder="Username">
             <input type="email" id="email-input" placeholder="Email">
             <input type="password" id="password-input" placeholder="Password">
             <button id="sign-up-button">Sign Up</button>
             <button id="log-in-button">Log In</button>
         </div>
         <div id="miner-section" style="display: none;">
+            <div class="settings">
+                <h3>Settings</h3>
+                <input type="text" id="username-update" placeholder="Username">
+                <input type="tel" id="phone-update" placeholder="Phone Number">
+                <button id="save-settings-button">Save</button>
+            </div>
             <button id="mine-button" class="circle-button">Start Mining</button>
             <p id="mining-status">Not mining</p>
             <p id="toncoin-count">0 TON</p>
