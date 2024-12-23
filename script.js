@@ -7,24 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let toncoin = parseFloat(localStorage.getItem('toncoin')) || 0;
     let mining = false;
 
-    // Firebase references
-    const db = firebase.database();
-    const usersRef = db.ref('users');
-
-    // Simulate user authentication (for demo purposes)
-    const userId = localStorage.getItem('userId') || `user_${Math.random().toString(36).substr(2, 9)}`;
-    localStorage.setItem('userId', userId);
-
-    // Check for referral
-    const urlParams = new URLSearchParams(window.location.search);
-    const referrerId = urlParams.get('ref');
-
-    if (referrerId && referrerId !== userId) {
-        // Add current user to the referrer's friend list
-        usersRef.child(referrerId).child('friends').push(userId);
-        alert('You have been referred by ' + referrerId);
-    }
-
     // Update Toncoin count on page load
     toncoinCount.textContent = `${toncoin.toFixed(7)} TON`;
 
@@ -45,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     friendsButton.addEventListener('click', function() {
+        const userId = localStorage.getItem('userId');
         const referralLink = `${window.location.origin}${window.location.pathname}?ref=${userId}`;
         const message = encodeURIComponent("Check out this Ton miner!");
 
