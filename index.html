@@ -1,22 +1,164 @@
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-    import { getDatabase } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyCetRQqTMEVaoNjMZal8c02OzwtR6QqbPw",
-        authDomain: "tonminer-5f14c.firebaseapp.com",
-        projectId: "tonminer-5f14c",
-        storageBucket: "tonminer-5f14c.firebasestorage.app",
-        messagingSenderId: "313508121395",
-        appId: "1:313508121395:web:679ca9cf1148e9471b8c46",
-        measurementId: "G-EGBCB1L7PR"
-    };
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const auth = getAuth();
-    const db = getDatabase();
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ton Miner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ton Miner</h1>
+        <div id="auth-section">
+            <h2>Sign Up / Log In</h2>
+            <input type="email" id="email-input" placeholder="Email">
+            <input type="password" id="password-input" placeholder="Password">
+            <button id="sign-up-button">Sign Up</button>
+            <button id="log-in-button">Log In</button>
+        </div>
+        <div id="miner-section" style="display: none;">
+            <button id="mine-button" class="circle-button">Start Mining</button>
+            <p id="mining-status">Not mining</p>
+            <p id="toncoin-count">0 TON</p>
+            <div class="social-buttons">
+                <button onclick="location.href='https://telegram.org'">Join Telegram</button>
+                <button onclick="location.href='https://facebook.com'">Join Facebook</button>
+                <button onclick="location.href='https://youtube.com'">Join YouTube</button>
+                <button id="friends-button">My Friends</button>
+                <div id="friends-list" style="display: none;"></div>
+                <button id="support-button">Support</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+        import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCetRQqTMEVaoNjMZal8c02OzwtR6QqbPw",
+            authDomain: "tonminer-5f14c.firebaseapp.com",
+            projectId: "tonminer-5f14c",
+            storageBucket: "tonminer-5f14c.firebasestorage.app",
+            messagingSenderId: "313508121395",
+            appId: "1:313508121395:web:679ca9cf1148e9471b8c46",
+            measurementId: "G-EGBCB1L7PR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
+        const db = getDatabase();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailInput = document.getElementById('email-input');
+            const passwordInput = document.getElementById('password-input');
+            const signUpButton = document.getElementById('sign-up-button');
+            const logInButton = document.getElementById('log-in-button');
+            const authSection = document.getElementById('auth-section');
+            const minerSection = document.getElementById('miner-section');
+            const friendsList = document.getElementById('friends-list');
+
+            signUpButton.addEventListener('click', () => {
+                const email = emailInput.value;
+                const password = passwordInput.value;
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        alert('Sign Up Successful!');
+                        authSection.style.display = 'none';
+                        minerSection.style.display = 'block';
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            });
+
+            logInButton.addEventListener('click', () => {
+                const email = emailInput.value;
+                const password = passwordInput.value;
+                signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        alert('Log In Successful!');
+                        authSection.style.display = 'none';
+                        minerSection.style.display = 'block';
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            });
+
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    const userId = user.uid;
+                    localStorage.setItem('userId', userId);
+                    const email = user.email;
+
+                    set(ref(db, 'users/' + userId), {
+                        email: email
+                    });
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const referrerId = urlParams.get('ref');
+
+                    if (referrerId && referrerId !== userId) {
+                        push(ref(db, 'users/' + referrerId + '/friends')).set({
+                            userId: userId,
+                            email: email
+                        });
+                        alert('You have been referred by ' + referrerId);
+                    }
+
+                    onValue(ref(db, 'users/' + userId + '/friends'), (snapshot) => {
+                        const friends = snapshot.val();
+                        let friendsContent = '<h3>My Friends</h3><ul>';
+                        let friendsCount = 0;
+
+                        for (let key in friends) {
+                            friendsCount++;
+                            friendsContent += `<li>${friends[key].email}</li>`;
+                        }
+
+                        friendsContent += `</ul><p>Total Friends: ${friendsCount}</p>`;
+                        friendsList.innerHTML = friendsContent;
+                        friendsList.style.display = 'block';
+                    });
+                } else {
+                    authSection.style.display = 'block';
+                    minerSection.style.display = 'none';
+                }
+            });
+
+            const mineButton = document.getElementById('mine-button');
+            const miningStatus = document.getElementById('mining-status');
+            const toncoinCount = document.getElementById('toncoin-count');
+            const friendsButton = document.getElementById('friends-button');
+            const supportButton = document.getElementById('support-button');
+            let toncoin = parseFloat(localStorage.getItem('toncoin')) || 0;
+            let mining = false;
+
+            toncoinCount.textContent = `${toncoin.toFixed(7)} TON`;
+
+            mineButton.addEventListener('click', function() {
+                if (!mining) {
+                    mining = true;
+                    alert('Mining started!');
+                    setTimeout(() => {
+                        miningStatus.textContent = 'Mining...';
+                        mineButton.textContent = 'Mining Started';
+                        setInterval(() => {
+                            toncoin += 0.0000005;
+                            toncoinCount.textContent = `${toncoin.toFixed(7)} TON`;
+                            localStorage.setItem('toncoin', toncoin);
+                        }, 100);
+                    }, 5000);
+                }
+            });
+
+            friendsButton.addEventListener('click', function() {
+                const userId = localStorage.getItem('userId');
+                const referralLink = `${window.location.origin}${window.location.pathname}?ref=${userId}`;
