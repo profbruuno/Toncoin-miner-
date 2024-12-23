@@ -10,7 +10,11 @@
 <body>
     <div class="container">
         <h1>Ton Miner</h1>
-        <input type="text" id="username" placeholder="Enter your name">
+        <div id="email-section">
+            <input type="email" id="email" placeholder="Enter your email">
+            <button id="save-email-button">Save</button>
+        </div>
+        <p id="cumulative-toncoin" style="display: none;">Cumulative TON: 0 TON</p>
         <button id="mine-button" class="circle-button">Start Mining</button>
         <p id="mining-status">Not mining</p>
         <p id="toncoin-count">0 TON</p>
@@ -23,3 +27,12 @@
         </div>
         <button id="fetch-rate-button">Fetch TON Exchange Rate</button>
         <p id="exchange-rate">Exchange Rate: N/A</p>
+        <div id="leaderboard" class="leaderboard">
+            <h2>Top Miners</h2>
+            <ul id="top-miners-list"></ul>
+        </div>
+    </div>
+    <div id="bubbles-container"></div>
+    <audio id="mining-sound" src="mining-started.mp3" preload="auto"></audio>
+</body>
+</html>
