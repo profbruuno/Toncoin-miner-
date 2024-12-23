@@ -7,6 +7,7 @@ body {
     height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
+    position: relative;
 }
 
 .container {
@@ -66,30 +67,16 @@ body {
     margin-top: 1em;
 }
 
-#email-section, #fetch-rate-button, #exchange-rate {
+#username, #fetch-rate-button, #exchange-rate {
     margin-top: 1em;
 }
 
-#email {
+#username {
     padding: 10px;
     width: 80%;
     max-width: 300px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-#save-email-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#save-email-button:hover {
-    background-color: #218838;
 }
 
 #fetch-rate-button {
@@ -154,4 +141,21 @@ body {
     background-color: #ff4500;
     border-radius: 50%;
     animation: bubbles 3s ease-in-out infinite;
+}
+
+#support-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#support-button:hover {
+    background-color: #ff6347;
 }
