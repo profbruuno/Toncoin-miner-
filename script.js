@@ -1,16 +1,61 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const mineButton = document.getElementById('mine-button');
-    const miningStatus = document.getElementById('mining-status');
-    const toncoinCount = document.getElementById('toncoin-count');
-    const friendsButton = document.getElementById('friends-button');
-    const supportButton = document.getElementById('support-button');
-    let toncoin = parseFloat(localStorage.getItem('toncoin')) || 0;
-    let mining = false;
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
-    // Firebase references
-    import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
-    const db = getDatabase();
-    const auth = getAuth();
+const firebaseConfig = {
+    apiKey: "AIzaSyCetRQqTMEVaoNjMZal8c02OzwtR6QqbPw",
+    authDomain: "tonminer-5f14c.firebaseapp.com",
+    projectId: "tonminer-5f14c",
+    storageBucket: "tonminer-5f14c.firebasestorage.app",
+    messagingSenderId: "313508121395",
+    appId: "1:313508121395:web:679ca9cf1148e9471b8c46",
+    measurementId: "G-EGBCB1L7PR"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth();
+const db = getDatabase();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const emailInput = document.getElementById('email-input');
+    const passwordInput = document.getElementById('password-input');
+    const signUpButton = document.getElementById('sign-up-button');
+    const logInButton = document.getElementById('log-in-button');
+    const authSection = document.getElementById('auth-section');
+    const minerSection = document.getElementById('miner-section');
+    const friendsList = document.getElementById('friends-list');
+
+    signUpButton.addEventListener('click', () => {
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                alert('Sign Up Successful!');
+                authSection.style.display = 'none';
+                minerSection.style.display = 'block';
+            })
+            .catch((error) => {
+                alert(error.message);
+            });
+    });
+
+    logInButton.addEventListener('click', () => {
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                alert('Log In Successful!');
+                authSection.style.display = 'none';
+                minerSection.style.display = 'block';
+            })
+            .catch((error) => {
+                alert(error.message);
+            });
+    });
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -18,17 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('userId', userId);
             const email = user.email;
 
-            // Update the user's email in the database
             set(ref(db, 'users/' + userId), {
                 email: email
             });
 
-            // Check for referral
             const urlParams = new URLSearchParams(window.location.search);
             const referrerId = urlParams.get('ref');
 
             if (referrerId && referrerId !== userId) {
-                // Add current user to the referrer's friend list
                 push(ref(db, 'users/' + referrerId + '/friends')).set({
                     userId: userId,
                     email: email
@@ -36,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('You have been referred by ' + referrerId);
             }
 
-            // Retrieve and display friends list
             onValue(ref(db, 'users/' + userId + '/friends'), (snapshot) => {
                 const friends = snapshot.val();
                 let friendsContent = '<h3>My Friends</h3><ul>';
@@ -57,7 +98,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Update Toncoin count on page load
+    const mineButton = document.getElementById('mine-button');
+    const miningStatus = document.getElementById('mining-status');
+    const toncoinCount = document.getElementById('toncoin-count');
+    const friendsButton = document.getElementById('friends-button');
+    const supportButton = document.getElementById('support-button');
+    let toncoin = parseFloat(localStorage.getItem('toncoin')) || 0;
+    let mining = false;
+
     toncoinCount.textContent = `${toncoin.toFixed(7)} TON`;
 
     mineButton.addEventListener('click', function() {
