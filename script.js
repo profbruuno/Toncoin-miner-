@@ -1,9 +1,14 @@
+// script.js
 document.addEventListener('DOMContentLoaded', function() {
     const mineButton = document.getElementById('mine-button');
     const miningStatus = document.getElementById('mining-status');
     const toncoinCount = document.getElementById('toncoin-count');
     const friendsButton = document.getElementById('friends-button');
     const supportButton = document.getElementById('support-button');
+    const usernameInput = document.getElementById('username');
+    const fetchRateButton = document.getElementById('fetch-rate-button');
+    const exchangeRate = document.getElementById('exchange-rate');
+    const miningSound = document.getElementById('mining-sound');
     let toncoin = 0;
     let mining = false;
     const referralLink = 'https://www.example.com/referral-link'; // Replace this with your actual referral link
@@ -11,13 +16,16 @@ document.addEventListener('DOMContentLoaded', function() {
     mineButton.addEventListener('click', function() {
         if (!mining) {
             mining = true;
+            miningSound.play(); // Play the sound
             alert('Mining started!');
+            createBubbles(); // Create bubbles
             setTimeout(() => {
                 miningStatus.textContent = 'Mining...';
                 mineButton.textContent = 'Mining Started'; // Change button text after 5 seconds
                 setInterval(() => {
                     toncoin += 0.0000005;
                     toncoinCount.textContent = `${toncoin.toFixed(7)} TON`;
+                    // You can send mining data to server here if needed
                 }, 100); // Adjusted interval to 100 milliseconds
             }, 5000); // Change text after 5 seconds
         }
@@ -45,4 +53,45 @@ document.addEventListener('DOMContentLoaded', function() {
     supportButton.addEventListener('click', function() {
         alert('Prof. Bruno is around');
     });
+
+    fetchRateButton.addEventListener('click', function() {
+        fetch('https://api.example.com/getTonExchangeRate') // Replace with your actual API endpoint
+            .then(response => response.json())
+            .then(data => {
+                exchangeRate.textContent = `Exchange Rate: ${data.rate} TON/USD`;
+            })
+            .catch(error => console.error('Error fetching exchange rate:', error));
+    });
+
+    function createBubbles() {
+        const bubblesContainer = document.getElementById('bubbles-container');
+        for (let i = 0; i < 10; i++) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubblesContainer.appendChild(bubble);
+
+            setTimeout(() => {
+                bubble.remove();
+            }, 3000); // Remove bubble after 3 seconds
+        }
+    }
+
+    function updateLeaderboard() {
+        const topMinersList = document.getElementById('top-miners-list');
+        const topMiners = [
+            { name: 'Alice', toncoin: 100 },
+            { name: 'Bob', toncoin: 75 },
+            { name: 'Charlie', toncoin: 50 }
+        ];
+
+        topMinersList.innerHTML = '';
+        topMiners.forEach(miner => {
+            const li = document.createElement('li');
+            li.textContent = `${miner.name}: ${miner.toncoin} TON`;
+            topMinersList.appendChild(li);
+        });
+    }
+
+    updateLeaderboard(); // Call this function to update the leaderboard
 });
