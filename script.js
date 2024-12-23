@@ -58,4 +58,75 @@ document.addEventListener('DOMContentLoaded', function() {
                 const user = userCredential.user;
                 alert('Log In Successful!');
                 authSection.style.display = 'none';
-                minerSection.style
+                minerSection.style.display = 'block';
+            })
+            .catch((error) => {
+                alert(error.message);
+            });
+    });
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const userId = user.uid;
+            localStorage.setItem('userId', userId);
+            const email = user.email;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const referrerId = urlParams.get('ref');
+
+            if (referrerId && referrerId !== userId) {
+                // Retrieve the referrer's email address from the database
+                get(child(ref(db), `users/${referrerId}`)).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const referrerEmail = snapshot.val().email;
+                        const referrerUsername = snapshot.val().username;
+
+                        // Add current user to the referrer's friend list
+                        push(ref(db, 'users/' + referrerId + '/friends'), {
+                            userId: userId,
+                            email: email
+                        });
+
+                        // Increment referral count
+                        const referralCountRef = ref(db, 'users/' + referrerId + '/referralCount');
+                        get(referralCountRef).then((snapshot) => {
+                            let referralCount = snapshot.exists() ? snapshot.val() : 0;
+                            set(referralCountRef, referralCount + 1);
+                        });
+
+                        alert(`You have been referred by ${referrerUsername || referrerEmail}`);
+                    } else {
+                        console.log('No data available for the referrer');
+                    }
+                }).catch((error) => {
+                    console.error(`Failed to get referrer data: ${error}`);
+                });
+            }
+
+            // Retrieve and display friends list
+            onValue(ref(db, 'users/' + userId + '/friends'), (snapshot) => {
+                const friends = snapshot.val();
+                let friendsContent = '<h3>My Friends</h3><ul>';
+                let friendsCount = 0;
+
+                for (let key in friends) {
+                    if (friends.hasOwnProperty(key)) {
+                        friendsCount++;
+                        friendsContent += `<li>${friends[key].email}</li>`;
+                    }
+                }
+
+                friendsContent += `</ul><p>Total Friends: ${friendsCount}</p>`;
+                friendsList.innerHTML = friendsContent;
+                friendsList.style.display = 'block';
+            });
+        } else {
+            authSection.style.display = 'block';
+            minerSection.style.display = 'none';
+        }
+    });
+
+    const mineButton = document.getElementById('mine-button');
+    const miningStatus = document.getElementById('mining-status');
+    const toncoinCount = document.getElementById('toncoin-count');
+    const friendsButton =[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/antydemant/lessons-2020/tree/0c6095f45bfd841914ac8e7e25f8c9df273dea69/02-closure-and-context%2Fhomework%2FREADME.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")
