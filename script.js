@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!mining) {
             mining = true;
             miningSound.play(); // Play the sound
+            setTimeout(() => {
+                miningSound.pause();
+                miningSound.currentTime = 0;
+            }, 1000); // Stop the sound after 1 second
             alert('Mining started!');
             createBubbles(); // Create bubbles
             setTimeout(() => {
@@ -109,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    updateLeaderboard(); // Call this function to update the leaderboard
+    updateLeaderboard();
 
     function validateEmail(email) {
         const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,}$/;
