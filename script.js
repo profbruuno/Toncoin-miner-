@@ -89,43 +89,4 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
 
                         // Increment referral count
-                        const referralCountRef = ref(db, 'users/' + referrerId + '/referralCount');
-                        get(referralCountRef).then((snapshot) => {
-                            let referralCount = snapshot.exists() ? snapshot.val() : 0;
-                            set(referralCountRef, referralCount + 1);
-                        });
-
-                        alert(`You have been referred by ${referrerUsername || referrerEmail}`);
-                    } else {
-                        console.log('No data available for the referrer');
-                    }
-                }).catch((error) => {
-                    console.error(`Failed to get referrer data: ${error}`);
-                });
-            }
-
-            // Retrieve and display friends list
-            onValue(ref(db, 'users/' + userId + '/friends'), (snapshot) => {
-                const friends = snapshot.val();
-                let friendsContent = '<h3>My Friends</h3><ul>';
-                let friendsCount = 0;
-
-                for (let key in friends) {
-                    if (friends.hasOwnProperty(key)) {
-                        friendsCount++;
-                        friendsContent += `<li>${friends[key].username} (${friends[key].email})</li>`;
-                    }
-                }
-
-                friendsContent += `</ul><p>Total Friends: ${friendsCount}</p>`;
-                friendsList.innerHTML = friendsContent;
-                friendsList.style.display = 'block';
-            });
-        } else {
-            authSection.style.display = 'block';
-            minerSection.style.display = 'none';
-        }
-    });
-
-    const mineButton = document.getElementById('mine-button');
-    const miningStatus = document.getElementById[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/antydemant/lessons-2020/tree/0c6095f45bfd841914ac8e7e25f8c9df273dea69/02-closure-and-context%2Fhomework%2FREADME.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")
+                        const referralCountRef = ref(db, 'users
