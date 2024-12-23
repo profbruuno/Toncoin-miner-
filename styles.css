@@ -66,16 +66,30 @@ body {
     margin-top: 1em;
 }
 
-#username, #fetch-rate-button, #exchange-rate {
+#email-section, #fetch-rate-button, #exchange-rate {
     margin-top: 1em;
 }
 
-#username {
+#email {
     padding: 10px;
     width: 80%;
     max-width: 300px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+#save-email-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#save-email-button:hover {
+    background-color: #218838;
 }
 
 #fetch-rate-button {
