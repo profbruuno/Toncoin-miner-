@@ -7,6 +7,56 @@ document.addEventListener('DOMContentLoaded', function() {
     let toncoin = parseFloat(localStorage.getItem('toncoin')) || 0;
     let mining = false;
 
+    // Firebase references
+    import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+    const db = getDatabase();
+    const auth = getAuth();
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const userId = user.uid;
+            localStorage.setItem('userId', userId);
+            const email = user.email;
+
+            // Update the user's email in the database
+            set(ref(db, 'users/' + userId), {
+                email: email
+            });
+
+            // Check for referral
+            const urlParams = new URLSearchParams(window.location.search);
+            const referrerId = urlParams.get('ref');
+
+            if (referrerId && referrerId !== userId) {
+                // Add current user to the referrer's friend list
+                push(ref(db, 'users/' + referrerId + '/friends')).set({
+                    userId: userId,
+                    email: email
+                });
+                alert('You have been referred by ' + referrerId);
+            }
+
+            // Retrieve and display friends list
+            onValue(ref(db, 'users/' + userId + '/friends'), (snapshot) => {
+                const friends = snapshot.val();
+                let friendsContent = '<h3>My Friends</h3><ul>';
+                let friendsCount = 0;
+
+                for (let key in friends) {
+                    friendsCount++;
+                    friendsContent += `<li>${friends[key].email}</li>`;
+                }
+
+                friendsContent += `</ul><p>Total Friends: ${friendsCount}</p>`;
+                friendsList.innerHTML = friendsContent;
+                friendsList.style.display = 'block';
+            });
+        } else {
+            authSection.style.display = 'block';
+            minerSection.style.display = 'none';
+        }
+    });
+
     // Update Toncoin count on page load
     toncoinCount.textContent = `${toncoin.toFixed(7)} TON`;
 
