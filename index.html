@@ -17,11 +17,9 @@
             <button id="log-in-button">Log In</button>
         </div>
         <div id="miner-section" style="display: none;">
-            <div class="settings">
-                <h3>Settings</h3>
-                <input type="text" id="username-update" placeholder="Username">
-                <input type="tel" id="phone-update" placeholder="Phone Number">
-                <button id="save-settings-button">Save</button>
+            <div class="header">
+                <h2>Ton Miner</h2>
+                <button id="settings-button">Settings</button>
             </div>
             <button id="mine-button" class="circle-button">Start Mining</button>
             <p id="mining-status">Not mining</p>
@@ -34,6 +32,13 @@
                 <div id="friends-list" style="display: none;"></div>
                 <button id="support-button">Support</button>
             </div>
+        </div>
+
+        <div id="settings-section" style="display: none;">
+            <h2>Settings</h2>
+            <input type="text" id="username-settings" placeholder="Username">
+            <input type="tel" id="phone-settings" placeholder="Phone Number">
+            <button id="save-settings-button">Save</button>
         </div>
     </div>
 
