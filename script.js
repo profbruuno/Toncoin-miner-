@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const supportButton = document.getElementById('support-button');
     const fetchRateButton = document.getElementById('fetch-rate-button');
     const exchangeRate = document.getElementById('exchange-rate');
-    const miningSound = document.getElementById('mining-sound');
+    const miningSound = new Audio('https://www.soundjay.com/button/sounds/beep-07.mp3'); // Default beep sound
     let toncoin = 0;
     let cumulativeToncoin = 0;
     let mining = false;
