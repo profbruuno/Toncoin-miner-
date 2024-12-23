@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const referrerId = urlParams.get('ref');
 
             if (referrerId && referrerId !== userId) {
-                // Retrieve the referrer's email address from the database
+                // Retrieve the referrer's email address and username from the database
                 get(child(ref(db), `users/${referrerId}`)).then((snapshot) => {
                     if (snapshot.exists()) {
                         const referrerEmail = snapshot.val().email;
@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Add current user to the referrer's friend list
                         push(ref(db, 'users/' + referrerId + '/friends'), {
                             userId: userId,
+                            username: usernameInput.value,
                             email: email
                         });
 
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 for (let key in friends) {
                     if (friends.hasOwnProperty(key)) {
                         friendsCount++;
-                        friendsContent += `<li>${friends[key].email}</li>`;
+                        friendsContent += `<li>${friends[key].username} (${friends[key].email})</li>`;
                     }
                 }
 
@@ -127,6 +128,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const mineButton = document.getElementById('mine-button');
-    const miningStatus = document.getElementById('mining-status');
-    const toncoinCount = document.getElementById('toncoin-count');
-    const friendsButton =[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/antydemant/lessons-2020/tree/0c6095f45bfd841914ac8e7e25f8c9df273dea69/02-closure-and-context%2Fhomework%2FREADME.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")
+    const miningStatus = document.getElementById[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/antydemant/lessons-2020/tree/0c6095f45bfd841914ac8e7e25f8c9df273dea69/02-closure-and-context%2Fhomework%2FREADME.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")
