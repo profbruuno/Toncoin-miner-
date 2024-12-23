@@ -17,10 +17,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     form.addEventListener("submit", function(event) {
         event.preventDefault();  // Prevent form submission
+        console.log("Form submitted"); // Debug message
 
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
         var errorMessage = document.getElementById("errorMessage");
+
+        console.log("Email: " + email); // Debug message
+        console.log("Password: " + password); // Debug message
 
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
