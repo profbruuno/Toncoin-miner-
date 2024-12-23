@@ -1,17 +1,32 @@
 // script.js
 document.addEventListener('DOMContentLoaded', function() {
+    const emailSection = document.getElementById('email-section');
+    const emailInput = document.getElementById('email');
+    const saveEmailButton = document.getElementById('save-email-button');
+    const cumulativeToncoinDisplay = document.getElementById('cumulative-toncoin');
     const mineButton = document.getElementById('mine-button');
     const miningStatus = document.getElementById('mining-status');
     const toncoinCount = document.getElementById('toncoin-count');
     const friendsButton = document.getElementById('friends-button');
     const supportButton = document.getElementById('support-button');
-    const usernameInput = document.getElementById('username');
     const fetchRateButton = document.getElementById('fetch-rate-button');
     const exchangeRate = document.getElementById('exchange-rate');
     const miningSound = document.getElementById('mining-sound');
     let toncoin = 0;
+    let cumulativeToncoin = 0;
     let mining = false;
     const referralLink = 'https://www.example.com/referral-link'; // Replace this with your actual referral link
+
+    saveEmailButton.addEventListener('click', function() {
+        const email = emailInput.value;
+        if (validateEmail(email)) {
+            emailSection.style.display = 'none';
+            cumulativeToncoinDisplay.style.display = 'block';
+            alert('Email saved successfully!');
+        } else {
+            alert('Please enter a valid email address.');
+        }
+    });
 
     mineButton.addEventListener('click', function() {
         if (!mining) {
@@ -24,8 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 mineButton.textContent = 'Mining Started'; // Change button text after 5 seconds
                 setInterval(() => {
                     toncoin += 0.0000005;
+                    cumulativeToncoin += 0.0000005;
                     toncoinCount.textContent = `${toncoin.toFixed(7)} TON`;
-                    // You can send mining data to server here if needed
+                    cumulativeToncoinDisplay.textContent = `Cumulative TON: ${cumulativeToncoin.toFixed(7)} TON`;
                 }, 100); // Adjusted interval to 100 milliseconds
             }, 5000); // Change text after 5 seconds
         }
@@ -94,4 +110,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     updateLeaderboard(); // Call this function to update the leaderboard
+
+    function validateEmail(email) {
+        const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,}$/;
+        return re.test(String(email).toLowerCase());
+    }
 });
