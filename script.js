@@ -127,14 +127,40 @@ In contrast to many cryptocurrencies and digital assets marketed as serious and 
 
 Dogecoin's value can also spike with high-profile endorsements, such as Elon Musk's tweets praising DOGE as one of the most intriguing digital assets, which led to a significant surge in its price, or as investors say, it went “to the moon.”
 
-The valuation of Dogecoin and its price also mirror broader global trends influencing the overall momentum of the cryptocurrency market. The price of DOGE may fluctuate in line with these trends, often influenced by Bitcoin, the market's most dominant cryptocurrency. Additionally, the practical use of DOGE, primarily as a tool for social media incentives, tipping content creators, and facilitating small transactions with negligible fees, also contributes to its market value...</span>`,
+The valuation of Dogecoin and its price also mirror broader global trends influencing the overall momentum of the cryptocurrency market. The price of DOGE may fluctuate in line with these trends, often influenced by Bitcoin, the market's most dominant cryptocurrency. Additionally, the practical use of DOGE, primarily as a tool for social media incentives, tipping content creators, and facilitating small transactions with negligible fees, also contributes to its market value. ...</span>`,
             Bitcoin: `<span style="color: red;">Your long description for Bitcoin here...</span>`,
             Notcoin: `<span style="color: red;">Your long description for Notcoin here...</span>`,
             Others: `<span style="color: red;">Your long description for Others here...</span>`
         };
 
         const descriptionWindow = window.open("", "_blank");
-        descriptionWindow.document.write(`<pre>${descriptions[coinName]}</pre>`);
+        descriptionWindow.document.write(`
+            <html>
+            <head>
+                <title>${coinName} Description</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        line-height: 1.6;
+                        margin: 20px;
+                        background-color: #f9f9f9;
+                        color: #333;
+                    }
+                    h1 {
+                        color: #ff4500;
+                    }
+                    pre {
+                        white-space: pre-wrap;
+                        word-wrap: break-word;
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>${coinName} Description</h1>
+                <pre>${descriptions[coinName]}</pre>
+            </body>
+            </html>
+        `);
     }
 
     updateLeaderboard();
