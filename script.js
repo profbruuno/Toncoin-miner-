@@ -102,9 +102,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Description Page
     function showDescription(coinName) {
         const descriptions = {
-            Dogecoin: `Put your long descrip...`,
-            Bitcoin: `Put your long description for Bitcoin here...`,
-            Notcoin: `Put your long description for Notcoin here...`,
+            Dogecoin: `Put your long descrivvvvbbbbbbbb...`,
+            Bitcoin: `Put your locoin here...`,
+            Notcoin: `Put tion foin here...`,
             Others: `Put your long description for Others here...`
         };
 
