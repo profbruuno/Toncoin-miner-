@@ -101,35 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showDescription(coinName) {
         const descriptions = {
-            Dogecoin: `What is Dogecoin (DOGE)
-Dogecoin (DOGE) is a decentralized, open-source cryptocurrency that facilitates peer-to-peer digital transactions using its blockchain network. It was developed by software engineers Jackson Palmer and Billy Markus, debuting in December 2013. Initially a hard fork from the defunct Luckycoin, which itself branched from Litecoin (LTC), Dogecoin is effectively a third-generation fork. Despite its origins as a playful "joke coin," Dogecoin quickly gained traction and developed a dedicated community. Operating without a CEO or formal governing body, Dogecoin's momentum is largely propelled by its passionate user base. Transitioning from meme status, Dogecoin has risen to prominence in the crypto world, boasting a significant market capitalization and a remarkable 5000% return in 2021. It has garnered a wide user base and high-profile endorsements, including those from celebrities like Elon Musk and Snoop Dogg.
-
-How does Dogecoin (DOGE) work?
-Dogecoin, a derivative of Bitcoin's code, was originally a hard fork of Luckycoin, which itself branched off from Litecoin (LTC). Litecoin is noted as the first major hard fork of Bitcoin. Adopting Litecoin's Scrypt-based consensus mechanism, Dogecoin shares many features with Bitcoin and its offshoots. This choice of Scrypt for its Proof-of-Work (POW) algorithm means Dogecoin mining doesn't rely on ASICs, which are common in Bitcoin mining.
-
-In the Dogecoin blockchain, like Bitcoin, network users contribute computing power to maintain the network, create new blocks, and validate transactions. However, Dogecoin's streamlined architecture allows for faster transaction processing compared to Bitcoin. Miners use their computational resources to create new blocks and confirm transactions by solving complex equations. Each new block rewards miners with 10,000 DOGE. Initially, creators Jackson Palmer and Billy Markus set Dogecoin's cap at 100 billion DOGE, but this limit was removed a few months post-launch. As a result, Dogecoin now has an inflationary model, introducing 5 billion new DOGE annually.
-
-History of Dogecoin (DOGE)
-Dogecoin, established as a joke at the end of 2013, was created by software developers Billy Markus and Jackson Palmer, friends on Reddit who had never met in person. Markus had worked at IBM, while Palmer was a software engineer at Adobe. Together, they shared a vision to develop a cryptocurrency that was both fun and easy to use, distinct from traditional banking systems, and offering nearly zero-fee instant transactions. They combined two popular themes from their online community at the time: the emerging cryptocurrency Bitcoin and a meme featuring a Shiba Inu with a misspelled version of the word "dog."
-
-The story of Dogecoin began with the idea of creating a cryptocurrency more suitable for a wider audience than Bitcoin. The first step was Palmer's purchase of the Dogecoin.com domain and the establishment of the project's official website. To the creators' surprise, Dogecoin was almost immediately well-received, with dogecoin.com attracting over a million visitors in its first month.
-
-Despite the successful launch of DOGE, neither Palmer nor Markus assumed the CEO role, highlighting the vital role of the Dogecoin community in the network's development. This was particularly evident in events such as the fundraising campaign to compensate for the millions of Dogecoins stolen in a hack attack on the now-defunct Dogewallet project, showcasing the community's remarkable spirit of unity.
-
-Tokenomics
-Token Circulation
-Originally, Dogecoin was designed with a cap of 100 billion in total supply. However, shortly after DOGE's initial launch, its creators revised its monetary policy, eliminating this cap and establishing an unlimited, inflationary supply.
-
-Projections suggest that the circulating supply of Dogecoin will double in approximately 26 years. As of now, there's no set upper limit to its total supply. New blocks on the Dogecoin blockchain are created about every minute, with each mining process rewarding 10,000 DOGE.
-
-Why Is Dogecoin (DOGE) Valuable?
-Dogecoin stands out with its marketing strategy, positioning itself as a fun and friendly digital currency for the internet. Launched in 2013 as what many saw as a "joke coin," it quickly amassed millions of followers in its first month alone.
-
-In contrast to many cryptocurrencies and digital assets marketed as serious and revolutionary blockchain ventures, Dogecoin opted for a more relaxed image. Yet, it still boasts appealing features like minimal transaction fees, quick transfers, a vibrant and easygoing community, and a non-aggressive mining environment. Despite sharing technical similarities with Litecoin and Bitcoin, Dogecoin's distinctive approach has carved out its niche as a user-friendly online currency, ideal for small-scale transactions and appealing to social media users, content creators, and merchants. The market value of Dogecoin is shaped by the interplay of buying and selling activities, setting its price. A significant part of its value stems from its robust and supportive community and its unique positioning as a cryptocurrency tailored for internet transactions.
-
-Dogecoin's value can also spike with high-profile endorsements, such as Elon Musk's tweets praising DOGE as one of the most intriguing digital assets, which led to a significant surge in its price, or as investors say, it went “to the moon.”
-
-The valuation of Dogecoin and its price also mirror broader global trends influencing the overall momentum of the cryptocurrency market. The price of DOGE may fluctuate in line with these trends, often influenced by Bitcoin, the market's most dominant cryptocurrency. Additionally, the practical use of DOGE, primarily as a tool for social media incentives, tipping content creators, and facilitating small transactions with negligible fees, also contributes to its market value.  ...`,
+            Dogecoin: `Your long description for Dogecoin here...`,
             Bitcoin: `Your long description for Bitcoin here...`,
             Notcoin: `Your long description for Notcoin here...`,
             Others: `Your long description for Others here...`
