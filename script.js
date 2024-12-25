@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const exchangeRate = document.getElementById('exchange-rate');
     const cryptoRecommendationsButton = document.getElementById('crypto-recommendations-button');
     const cryptoRecommendations = document.getElementById('crypto-recommendations');
+    const cryptoList = document.getElementById('crypto-list');
+    const cryptoDescription = document.getElementById('crypto-description');
     const miningSound = new Audio('https://www.soundjay.com/button/sounds/beep-07.mp3'); // Default beep sound
     let toncoin = 0;
     let cumulativeToncoin = 0;
@@ -75,6 +77,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    cryptoList.addEventListener('click', function(event) {
+        if (event.target.classList.contains('crypto-item')) {
+            const coinName = event.target.getAttribute('data-coin');
+            showDescription(coinName);
+        }
+    });
+
     function createBubbles() {
         const bubblesContainer = document.getElementById('bubbles-container');
         for (let i = 0; i < 10; i++) {
@@ -90,14 +99,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showDescription(coinName) {
-        fetch(`https://api.example.com/getCoinDescription?coinName=${coinName}`)
-            .then(response => response.json())
-            .then(data => {
-                const descriptionContainer = document.createElement('div');
-                descriptionContainer.textContent = data.description;
-                cryptoRecommendations.appendChild(descriptionContainer);
-            })
-            .catch(error => console.error('Error fetching coin description:', error));
+        // Simulating a description fetch. Replace with actual API call if needed.
+        const descriptions = {
+            Dogecoin: "Dogecoin (DOGE) is a cryptocurrency created as a joke but has gained popularity.",
+            Bitcoin: "Bitcoin (BTC) is a decentralized digital currency invented in 2008.",
+            Notcoin: "Notcoin (NOT) is a fictional cryptocurrency used for demonstration purposes.",
+            Others: "More coins coming soon..."
+        };
+        cryptoDescription.textContent = descriptions[coinName] || "Description not available.";
     }
 
     updateLeaderboard();
