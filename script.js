@@ -89,20 +89,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function updateLeaderboard() {
-        const topMinersList = document.getElementById('top-miners-list');
-        const topMiners = [
-            { name: 'Alice', toncoin: 100 },
-            { name: 'Bob', toncoin: 75 },
-            { name: 'Charlie', toncoin: 50 }
-        ];
-
-        topMinersList.innerHTML = '';
-        topMiners.forEach(miner => {
-            const li = document.createElement('li');
-            li.textContent = `${miner.name}: ${miner.toncoin} TON`;
-            topMinersList.appendChild(li);
-        });
+    function showDescription(coinName) {
+        fetch(`https://api.example.com/getCoinDescription?coinName=${coinName}`)
+            .then(response => response.json())
+            .then(data => {
+                const descriptionContainer = document.createElement('div');
+                descriptionContainer.textContent = data.description;
+                cryptoRecommendations.appendChild(descriptionContainer);
+            })
+            .catch(error => console.error('Error fetching coin description:', error));
     }
 
     updateLeaderboard();
