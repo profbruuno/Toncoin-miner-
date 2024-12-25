@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const fetchRateButton = document.getElementById('fetch-rate-button');
     const exchangeRate = document.getElementById('exchange-rate');
     const cryptoRecommendationsButton = document.getElementById('crypto-recommendations-button');
+    const cryptoRecommendations = document.getElementById('crypto-recommendations');
     const miningSound = new Audio('https://www.soundjay.com/button/sounds/beep-07.mp3'); // Default beep sound
     let toncoin = 0;
     let cumulativeToncoin = 0;
@@ -85,7 +86,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     cryptoRecommendationsButton.addEventListener('click', function() {
-        window.location.href = 'crypto.html'; // Open the new page
+        if (cryptoRecommendations.style.display === 'none') {
+            cryptoRecommendations.style.display = 'block';
+        } else {
+            cryptoRecommendations.style.display = 'none';
+        }
     });
 
     function createBubbles() {
