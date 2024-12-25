@@ -30,12 +30,13 @@
         <button id="support-button">Support</button>
         <div id="crypto-recommendations" style="display: none;">
             <h2>Recommended Crypto Coins</h2>
-            <ul>
-                <li onclick="showDescription('Dogecoin')">Dogecoin (DOGE)</li>
-                <li onclick="showDescription('Bitcoin')">Bitcoin (BTC)</li>
-                <li onclick="showDescription('Notcoin')">Notcoin (NOT)</li>
-                <li onclick="showDescription('Others')">Others coming soon...</li>
+            <ul id="crypto-list">
+                <li class="crypto-item" data-coin="Dogecoin">Dogecoin (DOGE)</li>
+                <li class="crypto-item" data-coin="Bitcoin">Bitcoin (BTC)</li>
+                <li class="crypto-item" data-coin="Notcoin">Notcoin (NOT)</li>
+                <li class="crypto-item" data-coin="Others">Others coming soon...</li>
             </ul>
+            <div id="crypto-description"></div>
         </div>
     </div>
     <div id="bubbles-container"></div>
