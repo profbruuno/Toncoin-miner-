@@ -127,7 +127,7 @@ In contrast to many cryptocurrencies and digital assets marketed as serious and 
 
 Dogecoin's value can also spike with high-profile endorsements, such as Elon Musk's tweets praising DOGE as one of the most intriguing digital assets, which led to a significant surge in its price, or as investors say, it went “to the moon.”
 
-The valuation of Dogecoin and its price also mirror broader global trends influencing the overall momentum of the cryptocurrency market. The price of DOGE may fluctuate in line with these trends, often influenced by Bitcoin, the market's most dominant cryptocurrency. Additionally, the practical use of DOGE, primarily as a tool for social media incentives, tipping content creators, and facilitating small transactions with negligible fees, also contributes to its market value.  ...`,
+The valuation of Dogecoin and its price also mirror broader global trends influencing the overall momentum of the cryptocurrency market. The price of DOGE may fluctuate in line with these trends, often influenced by Bitcoin, the market's most dominant cryptocurrency. Additionally, the practical use of DOGE, primarily as a tool for social media incentives, tipping content creators, and facilitating small transactions with negligible fees, also contributes to its market value. ...`,
             Bitcoin: `Your long description for Bitcoin here...`,
             Notcoin: `Your long description for Notcoin here...`,
             Others: `Your long description for Others here...`
@@ -157,3 +157,16 @@ The valuation of Dogecoin and its price also mirror broader global trends influe
                         border-radius: 5px;
                         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                     }
+                </style>
+            </head>
+            <body>
+                <h1>${coinName} Description</h1>
+                <pre>${descriptions[coinName]}</pre>
+            </body>
+            </html>
+        `);
+        descriptionWindow.document.close();
+    }
+
+    updateLeaderboard();
+});
