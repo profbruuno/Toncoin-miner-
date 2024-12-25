@@ -152,6 +152,10 @@ The valuation of Dogecoin and its price also mirror broader global trends influe
                     pre {
                         white-space: pre-wrap;
                         word-wrap: break-word;
+                        background-color: #fff;
+                        padding: 1em;
+                        border-radius: 5px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                     }
                 </style>
             </head>
