@@ -24,18 +24,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 miningSound.pause();
                 miningSound.currentTime = 0;
             }, 1000); // Stop the sound after 1 second
-            alert('Mining started!');
-            createBubbles(); // Create bubbles
-            setTimeout(() => {
-                miningStatus.textContent = 'Mining...';
-                mineButton.textContent = 'Mining Started'; // Change button text after 5 seconds
-                setInterval(() => {
-                    toncoin += 0.0000005;
-                    cumulativeToncoin += 0.0000005;
-                    toncoinCount.textContent = `${toncoin.toFixed(7)} TON`;
-                    cumulativeToncoinDisplay.textContent = `Cumulative TON: ${cumulativeToncoin.toFixed(7)} TON`;
-                }, 100); // Adjusted interval to 100 milliseconds
-            }, 5000); // Change text after 5 seconds
+            miningStatus.textContent = 'Mining...';
+            mineButton.textContent = 'Mining Started'; // Change button text immediately
+            setInterval(() => {
+                toncoin += 0.0000005;
+                cumulativeToncoin += 0.0000005;
+                toncoinCount.textContent = `${toncoin.toFixed(7)} TON`;
+                cumulativeToncoinDisplay.textContent = `Cumulative TON: ${cumulativeToncoin.toFixed(7)} TON`;
+            }, 100); // Adjusted interval to 100 milliseconds
         }
     });
 
