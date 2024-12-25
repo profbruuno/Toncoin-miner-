@@ -3,19 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recommended Crypto Coins</title>
+    <title>Ton Miner</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
+    <div id="support-button">Support</div>
     <div class="container">
-        <h1>Recommended Crypto Coins to Buy</h1>
-        <ul>
-            <li>Dogecoin (DOGE)</li>
-            <li>Bitcoin (BTC)</li>
-            <li>Notcoin (NOT)</li>
-            <li>Others coming soon...</li>
-        </ul>
-        <button onclick="location.href='index.html'">Back to Mining</button>
+        <h1>Ton Miner</h1>
+        <div id="email-section">
+            <input type="email" id="email" placeholder="Enter your email">
+            <button id="save-email-button">Save</button>
+        </div>
+        <p id="cumulative-toncoin" style="display: none;">Cumulative TON: 0 TON</p>
+        <button id="mine-button" class="circle-button">Start Mining</button>
+        <p id="mining-status">Not mining</p>
+        <p id="toncoin-count">0 TON</p>
+        <div class="social-buttons">
+            <button onclick="location.href='https://telegram.org'">Join Telegram</button>
+            <button onclick="location.href='https://facebook.com'">Join Facebook</button>
+            <button onclick="location.href='https://youtube.com'">Join YouTube</button>
+            <button id="friends-button">My Friends</button>
+        </div>
+        <button id="fetch-rate-button">Fetch TON Exchange Rate</button>
+        <p id="exchange-rate">Exchange Rate: N/A</p>
+        <div id="leaderboard" class="leaderboard">
+            <h2>Top Miners</h2>
+            <ul id="top-miners-list"></ul>
+        </div>
+        <button id="crypto-recommendations-button" class="recommend-button">Recommended Crypto Coins to Buy 👆</button>
+        <div id="crypto-recommendations" style="display: none;">
+            <h2>Recommended Crypto Coins</h2>
+            <ul>
+                <li>Dogecoin (DOGE)</li>
+                <li>Bitcoin (BTC)</li>
+                <li>Notcoin (NOT)</li>
+                <li>Others coming soon...</li>
+            </ul>
+        </div>
     </div>
+    <div id="bubbles-container"></div>
+    <audio id="mining-sound" src="https://www.soundjay.com/button/sounds/beep-07.mp3" preload="auto"></audio>
 </body>
 </html>
