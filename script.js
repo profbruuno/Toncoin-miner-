@@ -1,8 +1,5 @@
 // script.js
 document.addEventListener('DOMContentLoaded', function() {
-    const emailSection = document.getElementById('email-section');
-    const emailInput = document.getElementById('email');
-    const saveEmailButton = document.getElementById('save-email-button');
     const cumulativeToncoinDisplay = document.getElementById('cumulative-toncoin');
     const mineButton = document.getElementById('mine-button');
     const miningStatus = document.getElementById('mining-status');
@@ -18,17 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let cumulativeToncoin = 0;
     let mining = false;
     const referralLink = 'https://www.example.com/referral-link'; // Replace this with your actual referral link
-
-    saveEmailButton.addEventListener('click', function() {
-        const email = emailInput.value;
-        if (validateEmail(email)) {
-            emailSection.style.display = 'none';
-            cumulativeToncoinDisplay.style.display = 'block';
-            alert('Email saved successfully!');
-        } else {
-            alert('Please enter a valid email address.');
-        }
-    });
 
     mineButton.addEventListener('click', function() {
         if (!mining) {
@@ -124,9 +110,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     updateLeaderboard();
-
-    function validateEmail(email) {
-        const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,}$/;
-        return re.test(String(email).toLowerCase());
-    }
 });
