@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showDescription(coinName) {
         const descriptions = {
-            Dogecoin: `<span style="color: black;">What is Dogecoin (DOGE)
+            Dogecoin: `What is Dogecoin (DOGE)
 Dogecoin (DOGE) is a decentralized, open-source cryptocurrency that facilitates peer-to-peer digital transactions using its blockchain network. It was developed by software engineers Jackson Palmer and Billy Markus, debuting in December 2013. Initially a hard fork from the defunct Luckycoin, which itself branched from Litecoin (LTC), Dogecoin is effectively a third-generation fork. Despite its origins as a playful "joke coin," Dogecoin quickly gained traction and developed a dedicated community. Operating without a CEO or formal governing body, Dogecoin's momentum is largely propelled by its passionate user base. Transitioning from meme status, Dogecoin has risen to prominence in the crypto world, boasting a significant market capitalization and a remarkable 5000% return in 2021. It has garnered a wide user base and high-profile endorsements, including those from celebrities like Elon Musk and Snoop Dogg.
 
 How does Dogecoin (DOGE) work?
@@ -127,10 +127,10 @@ In contrast to many cryptocurrencies and digital assets marketed as serious and 
 
 Dogecoin's value can also spike with high-profile endorsements, such as Elon Musk's tweets praising DOGE as one of the most intriguing digital assets, which led to a significant surge in its price, or as investors say, it went “to the moon.”
 
-The valuation of Dogecoin and its price also mirror broader global trends influencing the overall momentum of the cryptocurrency market. The price of DOGE may fluctuate in line with these trends, often influenced by Bitcoin, the market's most dominant cryptocurrency. Additionally, the practical use of DOGE, primarily as a tool for social media incentives, tipping content creators, and facilitating small transactions with negligible fees, also contributes to its market value.</span>`,
-            Bitcoin: `<span style="color: red;">Your long description for Bitcoin here...</span>`,
-            Notcoin: `<span style="color: red;">Your long description for Notcoin here...</span>`,
-            Others: `<span style="color: red;">Your long description for Others here...</span>`
+The valuation of Dogecoin and its price also mirror broader global trends influencing the overall momentum of the cryptocurrency market. The price of DOGE may fluctuate in line with these trends, often influenced by Bitcoin, the market's most dominant cryptocurrency. Additionally, the practical use of DOGE, primarily as a tool for social media incentives, tipping content creators, and facilitating small transactions with negligible fees, also contributes to its market value.  ...`,
+            Bitcoin: `Your long description for Bitcoin here...`,
+            Notcoin: `Your long description for Notcoin here...`,
+            Others: `Your long description for Others here...`
         };
 
         const descriptionWindow = window.open("", "_blank");
@@ -144,7 +144,7 @@ The valuation of Dogecoin and its price also mirror broader global trends influe
                         line-height: 1.6;
                         margin: 20px;
                         background-color: #f9f9f9;
-                        color: #333;
+                        color: #000; /* Ensure text is black */
                     }
                     h1 {
                         color: #ff4500;
@@ -157,15 +157,3 @@ The valuation of Dogecoin and its price also mirror broader global trends influe
                         border-radius: 5px;
                         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                     }
-                </style>
-            </head>
-            <body>
-                <h1>${coinName} Description</h1>
-                <pre>${descriptions[coinName]}</pre>
-            </body>
-            </html>
-        `);
-    }
-
-    updateLeaderboard();
-});
