@@ -4,8 +4,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
+    min-height: 100vh;
+    background-color: #f9f9f9;
     margin: 0;
     position: relative;
 }
@@ -15,17 +15,166 @@ body {
     background: white;
     padding: 2em;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    margin: 2em auto;
 }
 
-.circle-button {
+h1, h2 {
+    color: #333;
+    font-weight: normal;
+}
+
+input[type="email"] {
+    padding: 10px;
+    width: 80%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+button {
     background-color: #ff4500;
     color: white;
     border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1em;
+}
+
+button:hover {
+    background-color: #ff6347;
+}
+
+.circle-button {
     border-radius: 50%;
     width: 100px;
     height: 100px;
     font-size: 1em;
+    animation: buttonGlow 1.5s infinite;
+}
+
+@keyframes buttonGlow {
+    0% {
+        box-shadow: 0 0 5px #ff4500;
+    }
+    50% {
+        box-shadow: 0 0 20px #ff4500;
+    }
+    100% {
+        box-shadow: 0 0 5px #ff4500;
+    }
+}
+
+.social-buttons button {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 0.5em;
+}
+
+.social-buttons button:hover {
+    background-color: #0056b3;
+}
+
+#support-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+
+#crypto-recommendations {
+    display: none;
+    margin-top: 2em;
+    padding: 1em;
+    border-radius: 10px;
+    background: #e9f5e9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#crypto-recommendations h2 {
+    margin-bottom: 1em;
+}
+
+#crypto-recommendations ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#crypto-recommendations li {
+    padding: 0.5em;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 0.5em;
+}
+
+#mining-status, #toncoin-count, #cumulative-toncoin, #exchange-rate {
+    font-size: 1.2em;
+    color: #555;
+    margin: 1em 0;
+}
+
+.bubble {
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #ff4500;
+    border-radius: 50%;
+    animation: bubbles 3s ease-in-out infinite;
+}
+
+@keyframes bubbles {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-200px);
+        opacity: 0;
+    }
+}
+
+.leaderboard {
+    margin-top: 2em;
+    background-color: #ffffff;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.leaderboard li {
+    padding: 0.5em;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 0.5em;
+}
+
+.recommend-button {
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    animation
+    margin-top: 1em;
+}
+
+.recommend-button:hover {
+    background-color: #ff6347;
+}
