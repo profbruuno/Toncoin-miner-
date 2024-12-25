@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const supportButton = document.getElementById('support-button');
     const fetchRateButton = document.getElementById('fetch-rate-button');
     const exchangeRate = document.getElementById('exchange-rate');
+    const cryptoRecommendationsButton = document.getElementById('crypto-recommendations-button');
     const miningSound = new Audio('https://www.soundjay.com/button/sounds/beep-07.mp3'); // Default beep sound
     let toncoin = 0;
     let cumulativeToncoin = 0;
@@ -81,6 +82,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 exchangeRate.textContent = `Exchange Rate: ${data.rate} TON/USD`;
             })
             .catch(error => console.error('Error fetching exchange rate:', error));
+    });
+
+    cryptoRecommendationsButton.addEventListener('click', function() {
+        window.location.href = 'crypto.html'; // Open the new page
     });
 
     function createBubbles() {
