@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const cryptoRecommendationsButton = document.getElementById('crypto-recommendations-button');
     const cryptoRecommendations = document.getElementById('crypto-recommendations');
     const cryptoList = document.getElementById('crypto-list');
-    const cryptoDescription = document.getElementById('crypto-description');
     const miningSound = new Audio('https://www.soundjay.com/button/sounds/beep-07.mp3'); // Default beep sound
     let toncoin = 0;
     let cumulativeToncoin = 0;
@@ -99,14 +98,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showDescription(coinName) {
-        // Simulating a description fetch. Replace with actual API call if needed.
         const descriptions = {
-            Dogecoin: "Dogecoin (DOGE) is a cryptocurrency created as a joke but has gained popularity.",
-            Bitcoin: "Bitcoin (BTC) is a decentralized digital currency invented in 2008.",
-            Notcoin: "Notcoin (NOT) is a fictional cryptocurrency used for demonstration purposes.",
-            Others: "More coins coming soon..."
+            Dogecoin: "Put your description here",
+            Bitcoin: "Put your description here",
+            Notcoin: "Put your description here",
+            Others: "Put your description here"
         };
-        cryptoDescription.textContent = descriptions[coinName] || "Description not available.";
+
+        const descriptionWindow = window.open("", "_blank");
+        descriptionWindow.document.write(`<pre>${descriptions[coinName]}</pre>`);
     }
 
     updateLeaderboard();
